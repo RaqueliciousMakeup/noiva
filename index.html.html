@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maquilhagem de Noiva · Raquel Moreira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown:    #32271D;
+      --bordeaux: #8C355E;
+      --offwhite: #F7F3ED;
+      --taupe:    #846D64;
+      --gold:     #C9A96E;
+      --gold-lt:  #E8D5B0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--offwhite);
+      color: var(--brown);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__left {
+      background: var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 6rem 5rem 6rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__left::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: var(--brown);
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      z-index: 2;
+    }
+
+    .hero__copy { max-width: 480px; }
+
+    .hero__eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--offwhite);
+      margin-bottom: 1.6rem;
+    }
+    .hero__title em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero__sub {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--taupe);
+      margin-bottom: 2.8rem;
+      max-width: 380px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--bordeaux);
+      color: var(--offwhite);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.6rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background .3s, transform .25s;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold);
+      opacity: 0;
+      transform: translate(5px, 5px);
+      transition: opacity .3s, transform .3s;
+    }
+    .btn-primary:hover { background: #7a2c52; transform: translate(-2px,-2px); }
+    .btn-primary:hover::after { opacity: 1; transform: translate(5px,5px); }
+
+    .hero__right {
+      background: var(--taupe);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(50,39,29,.45) 0%, transparent 60%);
+      z-index: 1;
+    }
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(18%) saturate(90%);
+    }
+    .hero__img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #7a6158 0%, #5a3e3a 50%, #3d2820 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__img-placeholder svg {
+      width: 120px;
+      opacity: .15;
+    }
+
+    /* Gold line overlay on hero */
+    .hero__gold-line {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      z-index: 10;
+    }
+
+    /* signature */
+    .signature-bar {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 5;
+      text-align: right;
+    }
+    .signature-bar__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--offwhite);
+      opacity: .9;
+    }
+    .signature-bar__role {
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .2rem;
+    }
+
+    /* ── DIVIDER ── */
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto;
+      max-width: 600px;
+      opacity: .6;
+    }
+
+    /* ── SECTION base ── */
+    section { padding: 7rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--bordeaux); }
+
+    .section-body {
+      font-size: .95rem;
+      line-height: 1.85;
+      color: var(--taupe);
+      max-width: 560px;
+    }
+
+    /* ── SOBRE ── */
+    .sobre { background: var(--offwhite); }
+    .sobre .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .sobre__visual {
+      position: relative;
+    }
+    .sobre__img-wrap {
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #c4a89a, #7a5a52);
+      position: relative;
+    }
+    .sobre__img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      width: 60%;
+      height: 60%;
+      border: 1px solid var(--gold);
+      opacity: .5;
+      pointer-events: none;
+    }
+    .sobre__quote {
+      position: absolute;
+      bottom: 2rem;
+      left: -2rem;
+      background: var(--brown);
+      color: var(--offwhite);
+      padding: 1.4rem 1.8rem;
+      max-width: 280px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    .sobre__quote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 0;
+      vertical-align: -1rem;
+      margin-right: .3rem;
+    }
+
+    /* ── INCLUDES ── */
+    .includes { background: var(--brown); color: var(--offwhite); }
+    .includes .section-title { color: var(--offwhite); }
+    .includes .section-body { color: var(--gold-lt); }
+
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+      border: 1px solid rgba(201,169,110,.2);
+    }
+    .include-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(201,169,110,.12);
+      position: relative;
+      transition: background .3s;
+    }
+    .include-card:hover { background: rgba(201,169,110,.06); }
+    .include-card__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      opacity: .35;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .include-card__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: var(--offwhite);
+      margin-bottom: .7rem;
+    }
+    .include-card__text {
+      font-size: .85rem;
+      line-height: 1.7;
+      color: var(--taupe);
+    }
+
+    /* ── PROCESSO ── */
+    .processo { background: var(--offwhite); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: .4;
+    }
+    .step { text-align: center; padding-top: 1rem; }
+    .step__dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin: 0 auto 1.8rem;
+      position: relative;
+      box-shadow: 0 0 0 5px rgba(201,169,110,.15);
+    }
+    .step__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--brown);
+      margin-bottom: .6rem;
+    }
+    .step__text {
+      font-size: .82rem;
+      line-height: 1.7;
+      color: var(--taupe);
+    }
+
+    /* ── PROMESSA ── */
+    .promessa { background: #f0ebe3; }
+    .promessa-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+    .promessa__bloco {
+      padding: 2.8rem;
+      background: var(--offwhite);
+      border-top: 2px solid var(--gold);
+      position: relative;
+    }
+    .promessa__icon {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .promessa__titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--brown);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .promessa__titulo em { font-style: italic; color: var(--bordeaux); }
+    .promessa__lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+    }
+    .promessa__lista li {
+      font-size: .9rem;
+      line-height: 1.65;
+      color: var(--taupe);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .promessa__lista li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: .75rem;
+    }
+    @media (max-width: 900px) {
+      .promessa-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── FAQ ── */
+    .faq { background: var(--offwhite); }
+    .faq-list { margin-top: 3.5rem; max-width: 720px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(132,109,100,.2);
+      padding: 1.6rem 0;
+    }
+    .faq-item summary {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--brown);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform .3s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      font-size: .88rem;
+      line-height: 1.85;
+      color: var(--taupe);
+      padding-top: 1rem;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: var(--bordeaux);
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,169,110,.12) 0%, transparent 70%);
+    }
+    .cta-final .section-label { justify-content: center; color: var(--gold-lt); }
+    .cta-final .section-label::before { background: var(--gold-lt); }
+    .cta-final .section-title { color: var(--offwhite); margin: 0 auto 1.2rem; text-align: center; }
+    .cta-final .section-body { color: rgba(247,243,237,.7); margin: 0 auto 2.8rem; text-align: center; }
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.6rem;
+      margin-left: 1rem;
+      transition: background .3s, color .3s;
+    }
+    .btn-ghost:hover { background: var(--gold); color: var(--brown); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: var(--taupe);
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: .75rem;
+      letter-spacing: .08em;
+    }
+    footer strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--offwhite);
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    /* ── ANIMATE ON SCROLL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__left { padding: 5rem 2rem; justify-content: center; text-align: center; }
+      .hero__left::after { display: none; }
+      .hero__copy { max-width: 100%; }
+      .hero__eyebrow { justify-content: center; }
+      .hero__sub { margin: 0 auto 2.5rem; }
+      .hero__right { height: 55vw; max-height: 480px; }
+      .sobre .container { grid-template-columns: 1fr; gap: 3rem; }
+      .includes-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .depo-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .steps { grid-template-columns: 1fr; }
+      .btn-ghost { margin: 1rem 0 0; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Maquilhagem de Noiva · Portugal</p>
+      <h1 class="hero__title">
+        O teu rosto.<br>
+        A tua <em>história.</em><br>
+        O teu dia.
+      </h1>
+      <p class="hero__sub">
+        Não vais esconder nada nesse dia. Vais revelar tudo o que és — com intenção, com arte, com o teu próprio poder.
+      </p>
+      <a href="#reserva" class="btn-primary">Reserva a tua data</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <div class="hero__img-placeholder">
+      <!-- Substitui por <img class="hero__img" src="foto-noiva.jpg" alt="Noiva" /> -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="35" r="18" stroke="white" stroke-width="1.5"/>
+        <path d="M15 95 C15 68 85 68 85 95" stroke="white" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="signature-bar">
+      <div class="signature-bar__name">Raquel Moreira</div>
+      <div class="signature-bar__role">Makeup Artist · Skincoach</div>
+    </div>
+  </div>
+  <div class="hero__gold-line"></div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══ SOBRE ═══ -->
+<section class="sobre">
+  <div class="container">
+    <div class="sobre__visual">
+      <div class="sobre__img-wrap">
+        <!-- Substitui por <img src="raquel.jpg" alt="Raquel Moreira" style="width:100%;height:100%;object-fit:cover"> -->
+      </div>
+      <div class="sobre__quote reveal">
+        A maquilhagem não esconde — revela o teu Power.
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">Quem sou</p>
+      <h2 class="section-title">Não sou mais<br>uma <em>maquilhadora.</em></h2>
+      <p class="section-body">
+        Sou a pessoa que vai conhecer a tua pele, perceber o teu estilo, e criar uma maquilhagem que parece nascida em ti — não posta por cima.
+      </p>
+      <p class="section-body" style="margin-top:1rem;">
+        Trabalho com noivas que querem sentir-se elas mesmas no altar. Não uma versão filtrada. Tu — em modo Power.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══ O QUE INCLUI ═══ -->
+<section class="includes">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">O serviço completo</p>
+      <h2 class="section-title">O que está<br>incluído</h2>
+      <p class="section-body">
+        Desde a primeira conversa até ao beijo final — cuido de tudo para que tu só tenhas de sorrir.
+      </p>
+    </div>
+    <div class="includes-grid reveal">
+      <div class="include-card">
+        <div class="include-card__num">01</div>
+        <div class="include-card__title">Consulta Pré-Noiva</div>
+        <div class="include-card__text">Analisamos juntas a tua pele, o estilo do vestido, a luz do espaço e o que queres sentir. Tudo com intenção.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-card__num">02</div>
+        <div class="include-card__title">Ensaio de Maquilhagem</div>
+        <div class="include-card__text">Testamos, ajustamos, confirmamos. Entras no dia do casamento sem surpresas — só certezas.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-card__num">03</div>
+        <div class="include-card__title">Dia da Noiva</div>
+        <div class="include-card__text">Preparação completa no local que escolheres. Eu levo tudo — produtos, calma e energia boa.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-card__num">04</div>
+        <div class="include-card__title">Maquilhagem de Longa Duração</div>
+        <div class="include-card__text">Técnicas e produtos pensados para durar da cerimónia à festa. A tua maquilhagem resiste a tudo.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-card__num">05</div>
+        <div class="include-card__title">Acompanhamento da Comitiva</div>
+        <div class="include-card__text">Maquilhagem para damas, mãe da noiva e quem mais precisar. Consulta disponibilidade e preçário.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-card__num">06</div>
+        <div class="include-card__title">Retoques de Emergência</div>
+        <div class="include-card__text">Recebes um kit de retoques personalizado para levares contigo. Estás sempre preparada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══ PROCESSO ═══ -->
+<section class="processo">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <p class="section-label" style="justify-content:center;"><span></span>Como funciona</p>
+      <h2 class="section-title" style="text-align:center;">Do primeiro contacto<br>ao <em>altar</em></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step__dot"></div>
+        <div class="step__title">Contacto Inicial</div>
+        <div class="step__text">Envias a tua data e o estilo do casamento. Confirmo disponibilidade.</div>
+      </div>
+      <div class="step">
+        <div class="step__dot"></div>
+        <div class="step__title">Consulta Gratuita</div>
+        <div class="step__text">Conversa de 30 min (online ou presencial) para perceber o teu vision.</div>
+      </div>
+      <div class="step">
+        <div class="step__dot"></div>
+        <div class="step__title">Ensaio</div>
+        <div class="step__text">Criamos o look, tiramos fotos. Ajustamos tudo até ficar perfeito.</div>
+      </div>
+      <div class="step">
+        <div class="step__dot"></div>
+        <div class="step__title">O Teu Dia</div>
+        <div class="step__text">Apareço no local, faço magia. Tu deslumbras. Ponto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══ PROMESSA + O QUE VAIS SENTIR ═══ -->
+<section class="promessa">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-label" style="justify-content:center;">O meu compromisso contigo</p>
+      <h2 class="section-title" style="text-align:center; margin:0 auto;">A minha <em>promessa</em><br>e o que vais <em>sentir</em></h2>
+    </div>
+    <div class="promessa-wrap reveal">
+
+      <div class="promessa__bloco">
+        <span class="promessa__icon">🤝</span>
+        <h3 class="promessa__titulo">A minha <em>promessa</em></h3>
+        <ul class="promessa__lista">
+          <li>Nunca vais parecer outra pessoa. Vais parecer tu — mas a versão mais poderosa de ti.</li>
+          <li>Estudo a tua pele antes de tocar num pincel. Porque a base de tudo é a pele.</li>
+          <li>Sou pontual, organizada e calma. O teu dia já tem stress suficiente — eu não vou acrescentar.</li>
+          <li>Só uso produtos que conheço e em que confio. Zero experiências no teu dia.</li>
+          <li>Se algo não estiver certo no ensaio, dizemos as duas. A tua opinião é a que manda.</li>
+        </ul>
+      </div>
+
+      <div class="promessa__bloco">
+        <span class="promessa__icon">✨</span>
+        <h3 class="promessa__titulo">O que vais <em>sentir</em></h3>
+        <ul class="promessa__lista">
+          <li>Vais olhar para o espelho e reconhecer-te — com orgulho.</li>
+          <li>Vais sentir-te segura quando entras naquela sala. Não ansiosa com a maquilhagem.</li>
+          <li>Vais chegar ao fim do dia com a maquilhagem intacta — mesmo depois das lágrimas, dos beijos e da pista de dança.</li>
+          <li>Vais ter fotos em que te vês bonita de verdade, não editada de mais.</li>
+          <li>Vais lembrar-te da manhã de preparação como um momento seu — calmo, bonito, teu.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Tens dúvidas?</p>
+      <h2 class="section-title">As perguntas que<br>toda a noiva <em>faz</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item">
+        <summary>Com quanto tempo de antecedência devo reservar?</summary>
+        <p>Para casamentos na época alta (Abril–Outubro), o ideal é reservar com 6 a 12 meses de antecedência. As datas esgotam rápido — especialmente fins de semana. Se a tua data for fora desse período, 3 a 4 meses costuma ser suficiente.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O ensaio é obrigatório?</summary>
+        <p>Não é obrigatório, mas recomendo sempre. É no ensaio que percebo a tua pele em profundidade, testamos o look com a iluminação e o vestido, e entras no dia do casamento com zero surpresas. Já tive noivas que mudaram o look completo no ensaio — e ficou perfeito.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Fazes também a maquilhagem das damas e da mãe da noiva?</summary>
+        <p>Sim! Dependendo do número de pessoas e do timing da manhã, posso tratar de toda a comitiva. Fala comigo no contacto inicial e organizamos tudo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Deslocas-te? Tens custos de deslocação?</summary>
+        <p>Desloco-me a todo o Portugal. Os custos de deslocação dependem da distância e são sempre apresentados de forma transparente antes de assinares qualquer compromisso.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Trabalhas com que tipo de peles?</summary>
+        <p>Com todas. Tenho formação em skincoaching, o que significa que percebo de pele como poucos maquilhadores percebem. Peles secas, mistas, oleosas, com manchas, com rosacea — conheço o que cada uma precisa.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta-final" id="reserva">
+  <div class="container">
+    <p class="section-label">A tua data está à espera</p>
+    <h2 class="section-title reveal">Pronta para te<br>sentires <em>tu mesma</em>?</h2>
+    <p class="section-body reveal">
+      Não deixas para amanhã o que o teu dia de noiva merece hoje. Verifica se a tua data ainda está disponível.
+    </p>
+    <div class="reveal">
+      <a href="LINK_DE_RESERVA_AQUI" class="btn-primary">Reserva agora</a>
+      <a href="https://www.instagram.com/HANDLE_AQUI" class="btn-ghost">Ver o meu trabalho</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <strong>Raquel Moreira</strong>
+  Makeup Artist · Skincoach · Portugal<br>
+  <span style="margin-top:.5rem;display:block;opacity:.6;">não esconde — revela.</span>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
